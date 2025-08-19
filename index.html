@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot CGR - Plan de Negocio</title>
+    <title>Chatbot CGR - Plan de Negocio nuevo modelo de negocio</title>
     <style>
         * {
             margin: 0;
@@ -233,7 +233,7 @@
         <p class="subtitle">Asistente Inteligente para el Plan de Negocio</p>
         
         <p class="description">
-            Bienvenido al chatbot inteligente de la Contraloría General de la República. 
+            Bienvenido al demo de chatbot para el plan de negocio . 
             Este asistente ha sido entrenado con información del plan de negocio institucional 
             y puede responder a tus consultas sobre objetivos estratégicos, metas, indicadores 
             y cualquier aspecto relacionado con la planificación institucional.
@@ -287,20 +287,81 @@
 
     <!-- Botpress Chatbot Integration -->
     <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/08/19/20/20250819204610-8X7XFEP3.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2025/08/19/20/20250819204610-8X7XFEP3.js"></script>
 
     <script>
+        let chatbotLoaded = false;
+
         function toggleChat() {
-            // El chatbot de Botpress se abrirá automáticamente
-            // Puedes personalizar este comportamiento si es necesario
-            console.log('Chatbot iniciado');
+            console.log('Intentando abrir chatbot...');
+            
+            // Método 1: Usar la API de Botpress
+            if (window.botpress && window.botpress.open) {
+                window.botpress.open();
+                console.log('Chatbot abierto con API');
+                return;
+            }
+            
+            // Método 2: Buscar el botón del chatbot y hacer clic
+            const chatButton = document.querySelector('[data-testid="chatbot-button"]') || 
+                             document.querySelector('.bpw-floating-button') ||
+                             document.querySelector('[aria-label*="chat"]') ||
+                             document.querySelector('button[class*="chat"]');
+            
+            if (chatButton) {
+                chatButton.click();
+                console.log('Chatbot abierto haciendo clic en botón');
+                return;
+            }
+            
+            // Método 3: Disparar evento personalizado
+            try {
+                window.postMessage({ type: 'BOTPRESS_OPEN_CHAT' }, '*');
+                console.log('Evento personalizado enviado');
+            } catch (e) {
+                console.error('Error al abrir chatbot:', e);
+            }
+
+            // Mostrar mensaje si no funciona
+            if (!chatbotLoaded) {
+                alert('El chatbot se está cargando, por favor espera unos segundos e intenta de nuevo.');
+            }
         }
 
-        // Mensaje de bienvenida cuando se carga la página
+        // Detectar cuando el chatbot esté listo
         window.addEventListener('load', function() {
-            setTimeout(function() {
-                console.log('Chatbot CGR cargado correctamente');
-            }, 2000);
+            console.log('Página cargada, verificando chatbot...');
+            
+            // Esperar a que Botpress se cargue
+            const checkBotpress = setInterval(() => {
+                if (window.botpress || document.querySelector('[data-testid="chatbot-button"]') || document.querySelector('.bpw-floating-button')) {
+                    chatbotLoaded = true;
+                    console.log('Chatbot CGR cargado correctamente');
+                    clearInterval(checkBotpress);
+                    
+                    // Ocultar el botón flotante por defecto si existe
+                    const floatingButton = document.querySelector('.bpw-floating-button');
+                    if (floatingButton) {
+                        floatingButton.style.display = 'none';
+                    }
+                }
+            }, 1000);
+
+            // Timeout después de 10 segundos
+            setTimeout(() => {
+                clearInterval(checkBotpress);
+                if (!chatbotLoaded) {
+                    console.warn('Chatbot no se cargó en 10 segundos');
+                }
+            }, 10000);
+        });
+
+        // Escuchar eventos del chatbot
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'BOTPRESS_READY') {
+                chatbotLoaded = true;
+                console.log('Botpress está listo');
+            }
         });
     </script>
 </body>
