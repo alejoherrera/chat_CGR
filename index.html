@@ -5,17 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot de la Contraloría General</title>
     <style>
+        /* Estilos básicos para la página */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Inter', Arial, sans-serif; /* Usamos Inter como se sugiere */
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5; /* Un fondo suave */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
+            box-sizing: border-box;
         }
+
+        /* Contenedor principal para el contenido */
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 2.5em; /* Un poco más grande para el título */
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para el iframe del chatbot de Botpress (si es necesario ajustarlo) */
+        /* Botpress inyecta su propio CSS, así que rara vez necesitas tocar esto */
+        /* Si el chatbot aparece muy pequeño o grande, es más un ajuste desde la plataforma Botpress */
     </style>
+    <!-- Carga de Tailwind CSS - aunque aquí usamos CSS personalizado, es una buena práctica si decides usarlo -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h1>Bienvenido al Chatbot de la Contraloría General</h1>
-    <p>Haz clic en el ícono del chat para empezar a interactuar.</p>
+    <div class="container">
+        <h1>Bienvenido al Chatbot de la Contraloría General 🏛️</h1>
+        <p>Este chatbot está diseñado para brindarte información y asistencia sobre los servicios y funciones de la Contraloría General.</p>
+        <p>Haz clic en el ícono del chat en la esquina inferior derecha para empezar a interactuar con nuestro asistente virtual.</p>
+    </div>
 
+    <!-- Scripts de Botpress para el Chatbot -->
+    <!-- El primer script carga la biblioteca principal del webchat. -->
     <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+    <!-- El segundo script contiene la configuración específica de tu chatbot de Botpress. -->
     <script src="https://files.bpcontent.cloud/2025/08/19/20/20250819204610-8X7XFEP3.js" defer></script>
 </body>
 </html>
