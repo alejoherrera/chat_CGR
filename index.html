@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot CGR - Plan de Negocio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .description {
+            color: #34495e;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .feature h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .chat-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            margin: 20px 10px;
+        }
+
+        .chat-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .instructions {
+            background: #e8f4f8;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 4px solid #4ECDC4;
+        }
+
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions ul {
+            text-align: left;
+            color: #34495e;
+            line-height: 1.8;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container > * {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .container > *:nth-child(2) { animation-delay: 0.1s; }
+        .container > *:nth-child(3) { animation-delay: 0.2s; }
+        .container > *:nth-child(4) { animation-delay: 0.3s; }
+        .container > *:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">CGR</div>
+        
+        <h1>Chatbot CGR</h1>
+        <p class="subtitle">Asistente Inteligente para el Plan de Negocio</p>
+        
+        <p class="description">
+            Bienvenido al chatbot inteligente de la Contraloría General de la República. 
+            Este asistente ha sido entrenado con información del plan de negocio institucional 
+            y puede responder a tus consultas sobre objetivos estratégicos, metas, indicadores 
+            y cualquier aspecto relacionado con la planificación institucional.
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📋</div>
+                <h3>Plan Estratégico</h3>
+                <p>Consulta objetivos, metas e indicadores del plan de negocio institucional</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <h3>Respuestas Inteligentes</h3>
+                <p>Obtén información precisa basada en documentos oficiales de la CGR</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🔍</div>
+                <h3>Búsqueda Avanzada</h3>
+                <p>Encuentra información específica sobre cualquier aspecto del plan</p>
+            </div>
+        </div>
+
+        <button class="chat-button" onclick="toggleChat()">
+            💬 Iniciar Conversación
+        </button>
+
+        <div class="instructions">
+            <h3>
+                <span>💡</span>
+                Cómo usar el chatbot
+            </h3>
+            <ul>
+                <li>Haz clic en el botón de chat para iniciar la conversación</li>
+                <li>Pregunta sobre objetivos estratégicos, metas o indicadores</li>
+                <li>Utiliza preguntas específicas para obtener mejores respuestas</li>
+                <li>Ejemplos: "¿Cuáles son los objetivos del plan?" o "Explícame las metas de fiscalización"</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>Demo desarrollado para la Contraloría General de la República</p>
+            <a href="https://github.com" class="github-link" target="_blank">
+                <span>📁</span>
+                Ver en GitHub
+            </a>
+        </div>
+    </div>
+
+    <!-- Botpress Chatbot Integration -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/08/19/20/20250819204610-8X7XFEP3.js" defer></script>
+
+    <script>
+        function toggleChat() {
+            // El chatbot de Botpress se abrirá automáticamente
+            // Puedes personalizar este comportamiento si es necesario
+            console.log('Chatbot iniciado');
+        }
+
+        // Mensaje de bienvenida cuando se carga la página
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                console.log('Chatbot CGR cargado correctamente');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
