@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot CGR - Plan de Negocio nuevo modelo de negocio</title>
+    <title>Chatbot CGR - Plan de Negocio</title>
     <style>
         * {
             margin: 0;
@@ -29,200 +29,90 @@
             max-width: 800px;
             width: 100%;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 48px;
+            font-size: 36px;
             font-weight: bold;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         h1 {
             color: #2c3e50;
             margin-bottom: 10px;
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 2rem;
         }
 
         .subtitle {
             color: #7f8c8d;
             margin-bottom: 30px;
-            font-size: 1.2rem;
-            font-weight: 300;
+            font-size: 1.1rem;
         }
 
         .description {
             color: #34495e;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .feature {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-
-        .feature h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .feature p {
-            color: #7f8c8d;
-            line-height: 1.6;
         }
 
         .chat-button {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 15px 30px;
+            font-size: 1.1rem;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-            margin: 20px 10px;
+            margin: 20px;
         }
 
         .chat-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .instructions {
-            background: #e8f4f8;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-            border-left: 4px solid #4ECDC4;
-        }
-
-        .instructions h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .instructions ul {
-            text-align: left;
-            color: #34495e;
-            line-height: 1.8;
-        }
-
-        .instructions li {
-            margin-bottom: 8px;
-        }
-
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ecf0f1;
-            color: #7f8c8d;
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
             font-size: 0.9rem;
         }
 
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #2c3e50;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin-top: 20px;
-            transition: all 0.3s ease;
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
         }
 
-        .github-link:hover {
-            background: #34495e;
-            transform: translateY(-2px);
+        .status.ready {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 30px 20px;
             }
-            
             h1 {
-                font-size: 2rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
+                font-size: 1.8rem;
             }
         }
-
-        /* Animaciones */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container > * {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .container > *:nth-child(2) { animation-delay: 0.1s; }
-        .container > *:nth-child(3) { animation-delay: 0.2s; }
-        .container > *:nth-child(4) { animation-delay: 0.3s; }
-        .container > *:nth-child(5) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -230,138 +120,117 @@
         <div class="logo">CGR</div>
         
         <h1>Chatbot CGR</h1>
-        <p class="subtitle">Asistente Inteligente para el Plan de Negocio</p>
+        <p class="subtitle">Asistente para el Plan de Negocio</p>
         
         <p class="description">
-            Bienvenido al demo de chatbot para el plan de negocio . 
-            Este asistente ha sido entrenado con información del plan de negocio institucional 
-            y puede responder a tus consultas sobre objetivos estratégicos, metas, indicadores 
-            y cualquier aspecto relacionado con la planificación institucional.
+            Demo de chatbot entrenado con el plan de negocio de la CGR. 
+            Puedes consultar sobre objetivos estratégicos, metas, indicadores 
+            y aspectos de la planificación institucional.
         </p>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📋</div>
-                <h3>Plan Estratégico</h3>
-                <p>Consulta objetivos, metas e indicadores del plan de negocio institucional</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">💬</div>
-                <h3>Respuestas Inteligentes</h3>
-                <p>Obtén información precisa basada en documentos oficiales de la CGR</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">🔍</div>
-                <h3>Búsqueda Avanzada</h3>
-                <p>Encuentra información específica sobre cualquier aspecto del plan</p>
-            </div>
-        </div>
-
-        <button class="chat-button" onclick="toggleChat()">
-            💬 Iniciar Conversación
+        <button class="chat-button" onclick="openChat()" id="chatBtn">
+            💬 Abrir Chat
         </button>
 
-        <div class="instructions">
-            <h3>
-                <span>💡</span>
-                Cómo usar el chatbot
-            </h3>
-            <ul>
-                <li>Haz clic en el botón de chat para iniciar la conversación</li>
-                <li>Pregunta sobre objetivos estratégicos, metas o indicadores</li>
-                <li>Utiliza preguntas específicas para obtener mejores respuestas</li>
-                <li>Ejemplos: "¿Cuáles son los objetivos del plan?" o "Explícame las metas de fiscalización"</li>
-            </ul>
-        </div>
-
-        <div class="footer">
-            <p>Demo desarrollado para la Contraloría General de la República</p>
-            <a href="https://github.com" class="github-link" target="_blank">
-                <span>📁</span>
-                Ver en GitHub
-            </a>
+        <div id="status" class="status loading">
+            Cargando chatbot...
         </div>
     </div>
 
-    <!-- Botpress Chatbot Integration -->
+    <!-- Chatbot Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/08/19/20/20250819204610-8X7XFEP3.js"></script>
 
     <script>
-        let chatbotLoaded = false;
+        const statusDiv = document.getElementById('status');
+        const chatBtn = document.getElementById('chatBtn');
+        
+        function updateStatus(message, type) {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
 
-        function toggleChat() {
-            console.log('Intentando abrir chatbot...');
+        function openChat() {
+            console.log('Intentando abrir chat...');
             
-            // Método 1: Usar la API de Botpress
-            if (window.botpress && window.botpress.open) {
-                window.botpress.open();
-                console.log('Chatbot abierto con API');
-                return;
-            }
-            
-            // Método 2: Buscar el botón del chatbot y hacer clic
-            const chatButton = document.querySelector('[data-testid="chatbot-button"]') || 
-                             document.querySelector('.bpw-floating-button') ||
-                             document.querySelector('[aria-label*="chat"]') ||
-                             document.querySelector('button[class*="chat"]');
-            
-            if (chatButton) {
-                chatButton.click();
-                console.log('Chatbot abierto haciendo clic en botón');
-                return;
-            }
-            
-            // Método 3: Disparar evento personalizado
-            try {
-                window.postMessage({ type: 'BOTPRESS_OPEN_CHAT' }, '*');
-                console.log('Evento personalizado enviado');
-            } catch (e) {
-                console.error('Error al abrir chatbot:', e);
+            // Buscar cualquier elemento del chatbot
+            const chatElements = [
+                document.querySelector('.bpw-floating-button'),
+                document.querySelector('[data-testid="chatbot-button"]'),
+                document.querySelector('iframe[src*="botpress"]'),
+                document.querySelector('[class*="chat"]'),
+                document.querySelector('[id*="chat"]')
+            ];
+
+            let found = false;
+            for (let element of chatElements) {
+                if (element) {
+                    console.log('Elemento encontrado:', element);
+                    if (element.click) {
+                        element.click();
+                        found = true;
+                        updateStatus('Chat abierto correctamente', 'ready');
+                        break;
+                    }
+                }
             }
 
-            // Mostrar mensaje si no funciona
-            if (!chatbotLoaded) {
-                alert('El chatbot se está cargando, por favor espera unos segundos e intenta de nuevo.');
+            if (!found) {
+                // Intentar con la API de Botpress
+                if (window.botpress) {
+                    try {
+                        window.botpress.open();
+                        updateStatus('Chat abierto con API', 'ready');
+                        found = true;
+                    } catch (e) {
+                        console.error('Error con API:', e);
+                    }
+                }
+            }
+
+            if (!found) {
+                updateStatus('No se pudo abrir el chat. Verifica que esté cargado.', 'error');
+                console.log('Elementos disponibles:', document.body.innerHTML.substring(0, 500));
             }
         }
 
-        // Detectar cuando el chatbot esté listo
-        window.addEventListener('load', function() {
-            console.log('Página cargada, verificando chatbot...');
+        // Verificar estado del chatbot cada segundo
+        let checkCount = 0;
+        const checkInterval = setInterval(() => {
+            checkCount++;
             
-            // Esperar a que Botpress se cargue
-            const checkBotpress = setInterval(() => {
-                if (window.botpress || document.querySelector('[data-testid="chatbot-button"]') || document.querySelector('.bpw-floating-button')) {
-                    chatbotLoaded = true;
-                    console.log('Chatbot CGR cargado correctamente');
-                    clearInterval(checkBotpress);
-                    
-                    // Ocultar el botón flotante por defecto si existe
-                    const floatingButton = document.querySelector('.bpw-floating-button');
-                    if (floatingButton) {
-                        floatingButton.style.display = 'none';
-                    }
-                }
-            }, 1000);
+            // Buscar evidencia de que el chatbot está cargado
+            const indicators = [
+                window.botpress,
+                document.querySelector('.bpw-floating-button'),
+                document.querySelector('[data-testid="chatbot-button"]'),
+                document.querySelector('iframe[src*="botpress"]')
+            ];
 
-            // Timeout después de 10 segundos
-            setTimeout(() => {
-                clearInterval(checkBotpress);
-                if (!chatbotLoaded) {
-                    console.warn('Chatbot no se cargó en 10 segundos');
-                }
-            }, 10000);
-        });
+            const isLoaded = indicators.some(indicator => indicator);
 
-        // Escuchar eventos del chatbot
-        window.addEventListener('message', function(event) {
-            if (event.data && event.data.type === 'BOTPRESS_READY') {
-                chatbotLoaded = true;
-                console.log('Botpress está listo');
+            if (isLoaded) {
+                updateStatus('Chatbot listo - Haz clic para abrir', 'ready');
+                clearInterval(checkInterval);
+                
+                // Ocultar botón flotante si existe
+                const floatingBtn = document.querySelector('.bpw-floating-button');
+                if (floatingBtn) {
+                    floatingBtn.style.display = 'none';
+                }
+            } else if (checkCount >= 15) {
+                updateStatus('Error: El chatbot no se cargó correctamente', 'error');
+                clearInterval(checkInterval);
             }
+        }, 1000);
+
+        // Log de debugging
+        window.addEventListener('load', () => {
+            console.log('Página cargada');
+            setTimeout(() => {
+                console.log('window.botpress:', window.botpress);
+                console.log('Elementos chat:', document.querySelectorAll('[class*="chat"], [id*="chat"]'));
+            }, 3000);
         });
     </script>
 </body>
